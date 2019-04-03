@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<style>
+*{box-sizing: border-box;}
+.clrfix{clear:both; display: block}
+.san1{ width:360px}
+.san2{   width:10%;float:left;    position: relative;  overflow: hidden; border: 1px solid}
+.trans{
+  -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+}
+.ic1{    display: block;
+    width: 35px;
+    height: 35px;
+    float: right;
+    background: #999;
+      border-radius: 100%;
+
+    }
+  .txtwrp{float: left;     width: 80%; overflow: hidden;    padding: 3px 4px;  }
+  .txt1{width: 97%;    height: 29px;}
+  .moveleft{left:200px; position: absolute;}
+  .iconwrp{ width:15%; float:right}
+.san4{ width:100%; display: none; clear: both; padding: 1px 0;}
+
+.san3{  width:90%;float:left;    position: relative;      overflow: hidden;border: 1px solid;     border-right: 0;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.js"></script>
+</head>
+
+<body>
+
+
+<div class="san1">
+<section>
+
+  <div class="san3">
+
+  <div class="txtwrp">   <input type="text" class="txt1" name="text1" /> </div>
+  <div class="iconwrp">  <span class="ic1 trans" ></span> </div>
+    <i class="clrfix"></i>
+  </div>
+
+  <div class="san2">
+
+  <div class="txtwrp ">   <input type="text" class="txt1" name="text1" /> </div>
+  <div class="iconwrp ">  <span class="ic1 trans" ></span> </div>
+    <i class="clrfix"></i>
+  </div>
+</section>
+  <div class="san4">
+    <h2>This div is visible</h2>
+    <div> <label>Name</label> <input type="text" name="txtname" /> </div>
+    <div> <label>Age</label> <input type="text" name="txtage" /> </div>
+    <div><label>Gender</label> <input type="radio" name="gender" value="Male"> <input type="radio" name="gender" value="Female" > </div>
+
+
+  </div>
+
+</div>
+<script>
+$(function() {
+  $(".san2 .iconwrp").swipe( {
+    //Generic swipe handler for all directions
+    swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
+    //  $(this).text("You swiped " + direction );
+      console.log("swipe left happend");
+
+//san2 open
+  $(".san3").animate({width: '10%'});
+      $(".san2").animate({width: '90%'});
+      //$(".san2 .txtwrp").animate({width: '80%'});
+    //  $(this).animate({width: '20%'});
+//san 3 close
+
+
+
+      //  $(".san3 .txtwrp").animate({width: '0%'});
+      $(".san4").slideDown();
+    },
+
+    threshold:10
+  });
+
+  //Set some options later
+  $("#test").swipe( {fingers:2} );
+});
+
+$(".san3 .iconwrp").swipe( {
+
+
+  swipeRight:function(event, direction, distance, duration, fingerCount, fingerData) {
+  //  $(this).text("You swiped " + direction );
+    console.log("swipe right happend");
+      $(".san2").animate({width: '10%'});
+    $(".san3").animate({width: '90%'});
+
+  //  $(".san2 .txtwrp").animate({width: '0%'});
+    //$(".san2 .iconwrp").animate({width: '100%'});
+
+  //  $(".san3 .txtwrp").animate({width: '80%'});
+  //  $(".san3 .iconwrp").animate({width: '20%'});
+  //  $(".ic1").animate({right: '0', left: '86%'});
+  $(".san4").slideUp();
+  },
+threshold:10
+});
+
+</script>
+</body>
+
+</html>
